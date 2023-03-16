@@ -3,7 +3,8 @@
 int main(void) {
 	// std::cout -> 출력을 위한 객체
 	// << -> 출력 연산자
-	std::cout << "Hello World\n"; //c++ 출력문
+	// std::endl -> 개행(줄바꿈) 객체
+	std::cout << "Hello World" << std::endl; 
 
 	return 0;
 }
