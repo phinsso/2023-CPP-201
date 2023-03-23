@@ -6,11 +6,7 @@ int main(void) {
 	char str[30] = "Sojeong";
 	int size = 0;
 
-	for (int i = 0; str[i] != '\0'; i++) {
-		size++;
-	}
-
-	printf("문자의 길이는 %d \n", size);
+	printf("문자의 길이는 %d \n", strlen(str));
 
 	return 0;
 }
