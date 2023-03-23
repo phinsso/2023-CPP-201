@@ -1,15 +1,13 @@
-﻿#include<stdio.h>
-#include<string.h>
+﻿#include<iostream>
+#include<string> // std::string이 들어있음
 
 int main(void) {
 
-	char str[30] = { 0 }; //문자는 29개 들어감 (null값 1개)
-	char str2[30] = "c_insert";
+	std::string str1;
+	std::string str2 = "c++_insert";
 
-	strcpy(str, str2); //str에다가 str2에 있는 문자열을 복사하여 넣겠다는 뜻
-
-	printf("%s \n",str);
-	printf("%s \n", str2);
+	str1 = str2;
+	std::cout << str1 << std::endl;
 
 	return 0;
 }
