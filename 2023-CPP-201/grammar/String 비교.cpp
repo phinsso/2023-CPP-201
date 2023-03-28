@@ -10,19 +10,21 @@ using namespace std;
 
 int main(void) {
 
-	char str1[50] = "Hello";
-	char str2[50] = "World";
+	string str1 = "Hello";
+	string str2 = "World";
+
+	// c++ string 편리해
+	// str2가 str1보다 사전에 더 늦게 나온다
 
 
 	// 함수 인자 위치와 결과값(-1, 1) 주의해서 보기!
 
-	int result = strcmp(str1, str2);
-	if (result == -1)
-		printf("str2 > str1");
-	else if (result == 1)
-		printf("str2 < str1");
-	else if (result == 0)
-		printf("str2 == str1");
+	if (str2 > str1)
+		cout << "str2 > str1";
+	else if (str2 < str1)
+		cout << "str2 < str1";
+	else
+		cout << "str2 == str1";
 
 	return 0;
 }
