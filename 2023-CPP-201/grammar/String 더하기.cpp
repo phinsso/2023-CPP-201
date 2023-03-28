@@ -10,7 +10,6 @@ using namespace std;
 
 int main(void) {
 
-	
 	string str1 = "Sojeong";
 	string str2 = "Rock";
 

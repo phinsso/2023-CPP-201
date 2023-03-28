@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="grammar\String 더하기.cpp">
+    <ClCompile Include="grammar\String 비교.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
