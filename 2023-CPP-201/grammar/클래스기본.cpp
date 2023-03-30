@@ -17,6 +17,15 @@ public:
 	int sex; // 유지보수를 위해 열거형(enum) 형으로 하는 것을 추천
 	string department;
 
+	void print(void)
+	{ // class는 멤버변수를 가질 수 있다
+		cout << "이름: " << name << endl;
+		cout << "학번: " << stuId << endl;
+		cout << "나이: " << age << endl;
+		cout << "성별: " << sex << endl; // 0: 남자, 1: 여자
+		cout << "학과: " << department << endl;
+	}
+
 };
 
 int main(void) {
@@ -28,7 +37,7 @@ int main(void) {
 	stu1.sex = 1;
 	stu1.department = "뉴미디어소프트웨어과";
 
-	cout << stu1.name << " " << stu1.stuId << " " << stu1.age << " " << stu1.sex << " " << stu1.department << endl;
+	stu1.print();
 
 	return 0;
 }
