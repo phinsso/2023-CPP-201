@@ -27,7 +27,7 @@ int main(void) {
 	stu1.sex = 1;
 	stu1.department = "뉴미디어소프트웨어과";
 
-	cout << stu1.name << " " << stu1.stuId << " " << stu1.age << " " << stu1.sex << " " << stu1.major << endl;
+	cout << stu1.name << " " << stu1.stuId << " " << stu1.age << " " << stu1.sex << " " << stu1.department << endl;
 
 	return 0;
 }
