@@ -30,7 +30,7 @@ public:
 
 int main(void) {
 
-	class Student stu1;
+	Student stu1;
 	stu1.name = "나소정";
 	stu1.stuId = 2106;
 	stu1.age = 18;
