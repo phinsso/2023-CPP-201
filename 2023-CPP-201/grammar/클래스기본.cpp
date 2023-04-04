@@ -22,13 +22,21 @@ public:
 		department = "뉴미디어소프트웨어과";
 	}
 
+	Student(string name, int stuId, int age, int sex, string department) { // 매개변수 이름을 다르게 하면 this 키워드 사용 안 해도 됨
+		this->name = name;
+		this->stuId = stuId;
+		this->age = age;
+		this->sex = sex;
+		this->department = department;
+	}
+
 	void print(void)
 	{ // class는 멤버변수를 가질 수 있다
 		cout << "이름: " << name << endl;
 		cout << "학번: " << stuId << endl;
 		cout << "나이: " << age << endl;
 		cout << "성별: " << sex << endl; // 0: 남자, 1: 여자
-		cout << "학과: " << department << endl;
+		cout << "학과: " << department << endl << endl;
 	}
 
 private:
@@ -45,8 +53,10 @@ private:
 int main(void) {
 
 	Student stu1 = Student(); // == Student stu1;
-
 	stu1.print();
+
+	Student stu2 = Student("김메론소다", 1207, 17, 1, "뉴미디어웹솔루션과");
+	stu2.print();
 
 	return 0;
 }
