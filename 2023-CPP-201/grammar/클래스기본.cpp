@@ -8,11 +8,6 @@ using namespace std;
 // 구조체, 클래스는 단어의 첫 글자를 대문자로 한다
 // class는 디폴트가 private (struct는 디폴트가 public)
 
-struct Actor {
-	string name;
-	string dialog;
-};
-
 
 class Student {
 
@@ -28,15 +23,9 @@ public:
 		department = "뉴미디어소프트웨어과";
 	}
 
-	Student(string name, int stuId, int age, int sex, string department) {
-
-		// this: 객체 자기 자신을 가리키는 포인터
-		// 매개변수명과 멤버변수명이 같아도 구별 가능
-		this->name = name;
-		this->stuId = stuId;
-		this->age = age;
-		this->sex = sex;
-		this->department = department;
+	Student(string name, int stuId, int age, int sex, string department)
+		: name(name), stuId(stuId), age(age), sex(sex), department(department) // 멤버변수 초기화
+	{
 	}
 
 	void print(void)
@@ -66,16 +55,6 @@ int main(void) {
 
 	Student stu2 = Student("김메론소다", 1207, 17, 1, "뉴미디어웹솔루션과");
 	stu2.print();
-
-	struct Actor SHLee;
-	SHLee.name = "이수혁";
-	SHLee.dialog = "너무 잘생겼음";
-
-	struct Actor* ptr = &SHLee;
-
-	//ptr->name과 (*ptr).name 은 같은 결과
-	cout << "이름: " << ptr->name << endl;
-	cout << "대사: " << (*ptr).dialog << endl;
 
 	return 0;
 }
