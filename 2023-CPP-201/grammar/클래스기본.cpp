@@ -61,5 +61,7 @@ int main(void) {
 	Student* stu3 = new Student("이수혁", 3100, 31, 0, "방송연예과");
 	stu3->print();
 
+	delete stu3; // 동적할당 해제
+
 	return 0;
 }
