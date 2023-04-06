@@ -28,7 +28,10 @@ public:
 		department = "뉴미디어소프트웨어과";
 	}
 
-	Student(string name, int stuId, int age, int sex, string department) { // 매개변수 이름을 다르게 하면 this 키워드 사용 안 해도 됨
+	Student(string name, int stuId, int age, int sex, string department) {
+
+		// this: 객체 자기 자신을 가리키는 포인터
+		// 매개변수명과 멤버변수명이 같아도 구별 가능
 		this->name = name;
 		this->stuId = stuId;
 		this->age = age;
