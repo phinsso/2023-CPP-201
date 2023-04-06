@@ -8,6 +8,12 @@ using namespace std;
 // 구조체, 클래스는 단어의 첫 글자를 대문자로 한다
 // class는 디폴트가 private (struct는 디폴트가 public)
 
+struct Actor {
+	string name;
+	string dialog;
+};
+
+
 class Student {
 
 public:
@@ -57,6 +63,16 @@ int main(void) {
 
 	Student stu2 = Student("김메론소다", 1207, 17, 1, "뉴미디어웹솔루션과");
 	stu2.print();
+
+	struct Actor SHLee;
+	SHLee.name = "이수혁";
+	SHLee.dialog = "너무 잘생겼음";
+
+	struct Actor* ptr = &SHLee;
+
+	//ptr->name과 (*ptr).name 은 같은 결과
+	cout << "이름: " << ptr->name << endl;
+	cout << "대사: " << (*ptr).dialog << endl;
 
 	return 0;
 }
