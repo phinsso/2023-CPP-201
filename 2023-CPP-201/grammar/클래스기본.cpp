@@ -53,11 +53,11 @@ int main(void) {
 	/* Student stu1 = Student(); // == Student stu1;
 	stu1.print(); */
 	
-	// 정적할당
+	// 정적할당: 메모리의 크기가 컴파일할 때 결정됨
 	Student stu2 = Student("김메론소다", 1207, 17, 1, "뉴미디어웹솔루션과");
 	stu2.print();
 
-	// 동적할당
+	// 동적할당: 메모리의 크기가 실행할 때 (runtime)에 결정됨, heap 영역
 	Student* stu3 = new Student("이수혁", 3100, 31, 0, "방송연예과");
 	stu3->print();
 
