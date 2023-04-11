@@ -15,13 +15,7 @@ public:
 	//생성자 (constructor): 객체가 생성될 때 호출되는 함수
 	// 생성자를 정의하지 않으면 default로 매개변수가 없는 생성자가 정의된다.
 
-	Student() {
-		name = "나소정";
-		stuId = 2106;
-		age = 18;
-		sex = 1;
-		department = "뉴미디어소프트웨어과";
-	}
+	Student() {}
 
 	Student(string name, int stuId, int age, int sex, string department)
 		: name(name), stuId(stuId), age(age), sex(sex), department(department) // 멤버변수 초기화
@@ -36,6 +30,13 @@ public:
 		cout << "성별: " << sex << endl; // 0: 남자, 1: 여자
 		cout << "학과: " << department << endl << endl;
 	}
+
+	void set_name(string name) { this->name = name; }
+	void set_stuId(int stuId) { this->stuId = stuId; }
+	void set_age(int age) { this->age = age; }
+	void set_sex(int sex) { this->sex = sex; }
+	void set_department(string department) { this->department = department; }
+
 
 private:
 	string name;
@@ -54,10 +55,10 @@ int main(void) {
 	//Student stu1 = Student("김메론소다", 1207, 17, 1, "뉴미디어웹솔루션과");
 	//stu1.print();
 
-	Student stu3[2];
+	/*Student stu3[2];
 	for (int i = 0; i < 2; i++) {
 		stu3[i].print();
-	}
+	}*/
 
 	// 동적할당: 메모리의 크기가 실행할 때 (runtime)에 결정됨, heap 영역
 	// c++의 동적할당은 반드시 delete로 해제해야 메모리 누수를 막을 수 있음
@@ -67,6 +68,18 @@ int main(void) {
 	//delete stu2; // 동적할당 해제
 
 	Student* stu4 = new Student[2];
+	stu4[0].set_age(18);
+	stu4[0].set_name("나소정");
+	stu4[0].set_sex(1);
+	stu4[0].set_stuId(2106);
+	stu4[0].set_department("뉴미디어소프트웨어과");
+
+	stu4[1].set_age(18);
+	stu4[1].set_name("이수혁");
+	stu4[1].set_stuId(2119);
+	stu4[1].set_sex(0);
+	stu4[1].set_department("뉴미디어소프트웨어과");
+
 	for (int i = 0; i < 2; i++) {
 		stu4[i].print(); // (포인터)배열의 요소에 해당하는 객체는 멤버를 .으로 접근
 	}
