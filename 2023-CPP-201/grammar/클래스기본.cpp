@@ -49,19 +49,29 @@ private:
 };
 
 int main(void) {
-
-	/* Student stu1 = Student(); // == Student stu1;
-	stu1.print(); */
 	
 	// 정적할당: 메모리의 크기가 컴파일할 때 결정됨
-	Student stu2 = Student("김메론소다", 1207, 17, 1, "뉴미디어웹솔루션과");
-	stu2.print();
+	//Student stu1 = Student("김메론소다", 1207, 17, 1, "뉴미디어웹솔루션과");
+	//stu1.print();
+
+	Student stu3[2];
+	for (int i = 0; i < 2; i++) {
+		stu3[i].print();
+	}
 
 	// 동적할당: 메모리의 크기가 실행할 때 (runtime)에 결정됨, heap 영역
-	Student* stu3 = new Student("이수혁", 3100, 31, 0, "방송연예과");
-	stu3->print();
+	// c++의 동적할당은 반드시 delete로 해제해야 메모리 누수를 막을 수 있음
+	
+	//Student* stu2 = new Student("이수혁", 3100, 31, 0, "방송연예과"); // 포인터로 접근하기 때문에 실제 데이터에 접근하는 것이 아님
+	//stu2->print(); // (포인터)단일 객체는 멤버를 -> 로 접근 (실제 데이터에 접근하기 위해 -> 사용)
+	//delete stu2; // 동적할당 해제
 
-	delete stu3; // 동적할당 해제
+	Student* stu4 = new Student[2];
+	for (int i = 0; i < 2; i++) {
+		stu4[i].print(); // (포인터)배열의 요소에 해당하는 객체는 멤버를 .으로 접근
+	}
+	delete[] stu4;
 
+	
 	return 0;
 }
