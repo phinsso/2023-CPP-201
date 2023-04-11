@@ -12,8 +12,10 @@ using namespace std;
 class Student {
 
 public:
-	//생성자 (constructor): 객체가 생성될 때 호출되는 함수
+	// 생성자 (constructor): 객체가 생성될 때 호출되는 함수
 	// 생성자를 정의하지 않으면 default로 매개변수가 없는 생성자가 정의된다.
+	// 생성자 함수의 이름은 클래스명과 같다
+	// 생성자는 반환형을 쓰지 않는다
 
 	Student() {}
 
