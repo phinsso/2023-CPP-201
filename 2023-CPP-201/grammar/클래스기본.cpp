@@ -53,7 +53,7 @@ private:
 
 int main(void) {
 	
-	// 정적할당: 메모리의 크기가 컴파일할 때 결정됨
+	// 정적할당: 메모리의 크기가 컴파일할 때 결정됨, stack 영역
 	//Student stu1 = Student("김메론소다", 1207, 17, 1, "뉴미디어웹솔루션과");
 	//stu1.print();
 
