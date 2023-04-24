@@ -12,7 +12,13 @@ public:
 		unsigned int str_length = strlen(str);
 		c_str_ = new char[str_length + 1]; // null 문자 공간 만들어줌 => + 1
 		strcpy(c_str_, str);
-	} 
+	}
+
+	// 소멸자 (destructor)
+	~MString() {
+		// 생성자에서 동적할당한 공간을 해제
+		delete[] c_str_;
+	}
 
 	unsigned int size() { return size_; } //getter
 	char* c_str() { return c_str_; } //getter
