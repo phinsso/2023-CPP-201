@@ -12,12 +12,14 @@ public:
 		unsigned int str_length = strlen(str);
 		c_str_ = new char[str_length + 1]; // null 문자 공간 만들어줌 => + 1
 		strcpy(c_str_, str);
+		cout << "MString 생성자 호출 완료" << endl;
 	}
 
 	// 소멸자 (destructor)
 	~MString() {
 		// 생성자에서 동적할당한 공간을 해제
 		delete[] c_str_;
+		cout << "MString 소멸자 호출 완료" << endl;
 	}
 
 	unsigned int size() { return size_; } //getter
