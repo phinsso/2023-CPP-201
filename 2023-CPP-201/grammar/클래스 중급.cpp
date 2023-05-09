@@ -6,7 +6,9 @@ using namespace std;
 
 class MString {
 public:
-	//생성자
+	//생성자 (constructor)
+	// 객체가 생성될 때 호출되는 함수 (메모리에 할당될 때)
+	// 클래스 이름과 같고, 반환형이 없다
 	MString(const char* str) { // 포인터로 사용하려면 const 붙여야 함
 		// 필요한 길이만큼 문자열 동적할당
 		unsigned int str_length = strlen(str);
@@ -16,6 +18,8 @@ public:
 	}
 
 	// 소멸자 (destructor)
+	// 객체가 소멸될 때 호출되는 함수 (메모리에 해제될 때)
+	// ~클래스이름, 반환형과 매개변수가 없다
 	~MString() {
 		// 생성자에서 동적할당한 공간을 해제
 		delete[] c_str_;
@@ -32,15 +36,8 @@ private:
 
 int main(void) {
 
-	// new로 동적할당한 공간은 반드시 delete로 해제시켜야 함
-	// 만약 그러지 않으면 메모리가 누수된다
-	MString* str = new MString("Aitai 2-1");
-
-	cout << str->c_str() << endl;
-
-	// str에 대한 delete는 진행되었으나, str->c_str에 대한 delete가 진행되지 않음
-	// TODO: 이를 delete 해주는 소멸자 구현하기
-	delete str;
+	MString str1 = MString("Aitai");
+	cout << str1.c_str() << endl;
 	
 
 	return 0;
