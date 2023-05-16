@@ -14,9 +14,11 @@ public:
 	}
 
 
-	// 복사생성자(얕은 복사로 인하여 문제점이 발생)
-	Character(const Character& c) : str_(c.str_)
+	// 복사생성자(깊은 복사)
+	Character(const Character& c)
 	{
+		str_ = new char[strlen(c.str_) + 1];
+		strcpy(str_, c.str_);
 		cout << "복사생성자 호출" << endl;
 	}
 
