@@ -5,6 +5,7 @@ using namespace sf;
 int main(void) {
 
 	RenderWindow window(VideoMode(640, 480), "Snake Game");
+	window.setFramerateLimit(60); // snake 움직이는 속도 조절 (1초에 60번의 작업이 이루어지도록 프레임을 조절) -> 사양에 관계없이 똑같은 속도로 처리됨 
 
 	RectangleShape snake;
 	snake.setPosition(200, 300);
@@ -25,6 +26,10 @@ int main(void) {
 			snake.move(0, -1);
 		if (Keyboard::isKeyPressed(Keyboard::Down))
 			snake.move(0, 1);
+		if (Keyboard::isKeyPressed(Keyboard::Left))
+			snake.move(-1, 0);
+		if (Keyboard::isKeyPressed(Keyboard::Right))
+			snake.move(1,0);
 
 		window.clear();
 
