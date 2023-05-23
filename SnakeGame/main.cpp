@@ -37,6 +37,17 @@ int main(void) {
 		else if (Keyboard::isKeyPressed(Keyboard::Right))
 			snake.move(5,0);
 
+		// update
+
+		// 뱀이 사과를 먹었을 때
+		if (snake.getGlobalBounds().intersects(apple.getGlobalBounds()))
+		{
+			apple.setPosition(-500, -500);
+		}
+
+
+		// render
+
 		window.clear();
 
 		window.draw(apple); // 뱀과 사과가 겹칠 경우 사과가 위에 나옴 (먼저 draw 해서)
