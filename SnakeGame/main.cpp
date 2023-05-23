@@ -12,6 +12,12 @@ int main(void) {
 	snake.setSize(Vector2f(30, 30));
 	snake.setFillColor(Color::Green);
 
+	RectangleShape apple;
+	apple.setPosition(300, 400);
+	apple.setSize(Vector2f(30, 30));
+	apple.setFillColor(Color::Red);
+
+
 	while (window.isOpen())
 	{
 		Event e;
@@ -24,15 +30,16 @@ int main(void) {
 
 		if (Keyboard::isKeyPressed(Keyboard::Up))
 			snake.move(0, -5);
-		if (Keyboard::isKeyPressed(Keyboard::Down))
+		else if (Keyboard::isKeyPressed(Keyboard::Down))
 			snake.move(0, 5);
-		if (Keyboard::isKeyPressed(Keyboard::Left))
+		else if (Keyboard::isKeyPressed(Keyboard::Left))
 			snake.move(-5, 0);
-		if (Keyboard::isKeyPressed(Keyboard::Right))
+		else if (Keyboard::isKeyPressed(Keyboard::Right))
 			snake.move(5,0);
 
 		window.clear();
 
+		window.draw(apple); // 뱀과 사과가 겹칠 경우 사과가 위에 나옴 (먼저 draw 해서)
 		window.draw(snake);
 
 		window.display();
