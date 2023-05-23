@@ -1,4 +1,6 @@
 ﻿#include <SFML/Graphics.hpp>
+#include <stdlib.h> // srand(), rand()
+#include <time.h> // time()
 
 using namespace sf;
 
@@ -7,13 +9,15 @@ int main(void) {
 	RenderWindow window(VideoMode(640, 480), "Snake Game");
 	window.setFramerateLimit(60); // snake 움직이는 속도 조절 (1초에 60번의 작업이 이루어지도록 프레임을 조절) -> 사양에 관계없이 똑같은 속도로 처리됨 
 
+	srand(time(NULL));
+
 	RectangleShape snake;
 	snake.setPosition(200, 300);
 	snake.setSize(Vector2f(30, 30));
 	snake.setFillColor(Color::Green);
 
 	RectangleShape apple;
-	apple.setPosition(300, 400);
+	apple.setPosition(rand()%640-30, rand()%480-30);
 	apple.setSize(Vector2f(30, 30));
 	apple.setFillColor(Color::Red);
 
@@ -42,7 +46,7 @@ int main(void) {
 		// 뱀이 사과를 먹었을 때
 		if (snake.getGlobalBounds().intersects(apple.getGlobalBounds()))
 		{
-			apple.setPosition(-500, -500);
+			apple.setPosition(rand() % 640 - 30, rand() % 480 - 30);
 		}
 
 
