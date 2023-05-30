@@ -9,6 +9,18 @@
 
 using namespace sf;
 
+class Snake {
+public:
+	int dir_;
+	int x_;
+	int y_;
+	RectangleShape sprite_;   // 그래픽
+};
+
+class Apple {
+
+};
+
 int main(void) {
 
 	const int WIDTH = 1000;
@@ -18,22 +30,18 @@ int main(void) {
 	const int w = WIDTH / block;
 	const int h = HEIGHT / block;
 
-
-	
-
 	RenderWindow window(VideoMode(WIDTH, HEIGHT), "Snake Game");
 	window.setFramerateLimit(10); // snake 움직이는 속도 조절 (1초에 n번의 작업이 이루어지도록 프레임을 조절) -> 사양에 관계없이 똑같은 속도로 처리됨 
 
 	srand(time(NULL));
 
-
-	RectangleShape snake;
-	int snake_dir = DIR_DOWN;
-	int snake_x = 3;
-	int snake_y = 3;
-	snake.setPosition(snake_x * block , snake_y * block);
-	snake.setSize(Vector2f(block, block));
-	snake.setFillColor(Color::Green);
+	Snake snake;
+	snake.dir_ = DIR_DOWN;
+	snake.x_ = 3;
+	snake.y_ = 3;
+	snake.sprite_.setPosition(snake.x_ * block , snake.y_ * block);
+	snake.sprite_.setSize(Vector2f(block, block));
+	snake.sprite_.setFillColor(Color::Green);
 
 	RectangleShape apple;
 	int apple_x = rand() % 10;
@@ -55,38 +63,38 @@ int main(void) {
 
 		if (Keyboard::isKeyPressed(Keyboard::Up))
 		{
-			snake_dir = DIR_UP;
+			snake.dir_ = DIR_UP;
 		}
 		else if (Keyboard::isKeyPressed(Keyboard::Down))
 		{
-			snake_dir = DIR_DOWN;
+			snake.dir_ = DIR_DOWN;
 		}
 		else if (Keyboard::isKeyPressed(Keyboard::Left))
 		{
-			snake_dir = DIR_LEFT;
+			snake.dir_ = DIR_LEFT;
 		}
 		else if (Keyboard::isKeyPressed(Keyboard::Right))
 		{
-			snake_dir = DIR_RIGHT;
+			snake.dir_ = DIR_RIGHT;
 		}
 
 		// update
-		if (snake_dir == DIR_UP) {
-			snake_y--;
+		if (snake.dir_ == DIR_UP) {
+			snake.y_--;
 		}
-		else if (snake_dir == DIR_DOWN) {
-			snake_y++;
+		else if (snake.dir_ == DIR_DOWN) {
+			snake.y_++;
 		}
-		else if (snake_dir == DIR_LEFT) {
-			snake_x--;
+		else if (snake.dir_ == DIR_LEFT) {
+			snake.x_--;
 		}
-		else if (snake_dir == DIR_RIGHT) {
-			snake_x++;
+		else if (snake.dir_ == DIR_RIGHT) {
+			snake.x_++;
 		}
-		snake.setPosition(snake_x * block, snake_y * block);
+		snake.sprite_.setPosition(snake.x_ * block, snake.y_ * block);
 
 		// 뱀이 사과를 먹었을 때
-		if (snake_x == apple_x && snake_y == apple_y)
+		if (snake.x_ == apple_x && snake.y_ == apple_y)
 		{
 			apple_x = rand() % w;
 			apple_y = rand() % h;
@@ -99,7 +107,7 @@ int main(void) {
 		window.clear();
 
 		window.draw(apple); // 뱀과 사과가 겹칠 경우 사과가 위에 나옴 (먼저 draw 해서)
-		window.draw(snake);
+		window.draw(snake.sprite_);
 
 		window.display();
 
