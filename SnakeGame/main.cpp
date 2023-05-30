@@ -18,7 +18,10 @@ public:
 };
 
 class Apple {
-
+public:
+	int x_;
+	int y_;
+	RectangleShape sprite_;
 };
 
 int main(void) {
@@ -43,12 +46,12 @@ int main(void) {
 	snake.sprite_.setSize(Vector2f(block, block));
 	snake.sprite_.setFillColor(Color::Green);
 
-	RectangleShape apple;
-	int apple_x = rand() % 10;
-	int apple_y = rand() % 10;
-	apple.setPosition(apple_x * block, apple_y * block);
-	apple.setSize(Vector2f(block, block));
-	apple.setFillColor(Color::Red);
+	Apple apple;
+	apple.x_ = rand() % w;
+	apple.y_ = rand() % h;
+	apple.sprite_.setPosition(apple.x_ * block, apple.y_ * block);
+	apple.sprite_.setSize(Vector2f(block, block));
+	apple.sprite_.setFillColor(Color::Red);
 
 
 	while (window.isOpen())
@@ -94,11 +97,11 @@ int main(void) {
 		snake.sprite_.setPosition(snake.x_ * block, snake.y_ * block);
 
 		// 뱀이 사과를 먹었을 때
-		if (snake.x_ == apple_x && snake.y_ == apple_y)
+		if (snake.x_ == apple.x_ && snake.y_ == apple.y_)
 		{
-			apple_x = rand() % w;
-			apple_y = rand() % h;
-			apple.setPosition(apple_x * block, apple_y * block);
+			apple.x_ = rand() % w;
+			apple.y_ = rand() % h;
+			apple.sprite_.setPosition(apple.x_ * block, apple.y_ * block);
 		}
 
 
@@ -106,7 +109,7 @@ int main(void) {
 
 		window.clear();
 
-		window.draw(apple); // 뱀과 사과가 겹칠 경우 사과가 위에 나옴 (먼저 draw 해서)
+		window.draw(apple.sprite_); // 뱀과 사과가 겹칠 경우 사과가 위에 나옴 (먼저 draw 해서)
 		window.draw(snake.sprite_);
 
 		window.display();
