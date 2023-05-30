@@ -42,7 +42,7 @@ int main(void) {
 	snake.dir_ = DIR_DOWN;
 	snake.x_ = 3;
 	snake.y_ = 3;
-	snake.sprite_.setPosition(snake.x_ * block , snake.y_ * block);
+	snake.sprite_.setPosition(snake.x_ * block, snake.y_ * block);
 	snake.sprite_.setSize(Vector2f(block, block));
 	snake.sprite_.setFillColor(Color::Green);
 
@@ -82,6 +82,8 @@ int main(void) {
 		}
 
 		// update
+
+		// 경계범위 안에 있을 때, 뱀 이동
 		if (snake.dir_ == DIR_UP) {
 			snake.y_--;
 		}
@@ -94,6 +96,17 @@ int main(void) {
 		else if (snake.dir_ == DIR_RIGHT) {
 			snake.x_++;
 		}
+
+		// 경계범위를 넘었을 때
+		if (snake.x_ < 0)
+			snake.x_ = 0;
+		if (snake.x_ >= w)
+			snake.x_ = w - 1;
+		if (snake.y_ < 0)
+			snake.y_ = 0;
+		if (snake.y_ >= h)
+			snake.y_ = h - 1;
+
 		snake.sprite_.setPosition(snake.x_ * block, snake.y_ * block);
 
 		// 뱀이 사과를 먹었을 때
