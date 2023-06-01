@@ -21,6 +21,7 @@ public:
 class Snake {
 public:
 	int dir_;
+	int length_;
 	Object body_[BODY_MAX];
 };
 
@@ -46,6 +47,7 @@ int main(void) {
 	srand(time(NULL));
 
 	Snake snake;
+	snake.length_ = 1;
 	snake.dir_ = DIR_DOWN;
 
 	for (int i = 0; i < BODY_MAX; i++) {
@@ -109,6 +111,13 @@ int main(void) {
 			snake.body_[0].x_++;
 		}
 
+		// 뱀의 몸통에 대한 이동
+		for (int i = snake.length_ - 1; i > 0; i--) {
+			snake.body_[i].x_ = snake.body_[i - 1].x_;
+			snake.body_[i].y_ = snake.body_[i - 1].y_;
+			snake.body_[i].sprite_.setPosition(snake.body_[i].x_ * block, snake.body_[i].y_ * block);
+		}
+
 		// 경계범위를 넘었을 때
 		if (snake.body_[0].x_ < 0)
 			snake.body_[0].x_ = 0;
@@ -123,12 +132,14 @@ int main(void) {
 			snake.body_[i].sprite_.setPosition(snake.body_[i].x_ * block, snake.body_[i].y_ * block);
 		}
 
-		// 뱀이 사과를 먹었을 때
+		// 뱀이 사과를 먹었을 때 길이가 늘어남
+		// TODO: 길이가 1일 때 두 번 먹어야 늘어나는 버그 고치기
 		if (snake.body_[0].x_ == apple.x_ && snake.body_[0].y_ == apple.y_)
 		{
 			apple.x_ = rand() % w;
 			apple.y_ = rand() % h;
 			apple.sprite_.setPosition(apple.x_ * block, apple.y_ * block);
+			snake.length_++;
 		}
 
 
