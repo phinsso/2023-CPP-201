@@ -14,7 +14,8 @@ public:
 
 	~Animal() { cout << "Animal 소멸자()" << endl; }
 
-	void Roar(void) { cout << "Animal 짖다" << endl; }
+	virtual void Roar(void) { cout << "Animal 짖다" << endl; }
+	// (virtual 키워드) 가상함수: java처럼 동적 바인딩이 됨
 	void Eat(void) { cout << "Animal 먹다" << endl; }
 	void Sleep(void) { cout << "Animal 자다" << endl; }
 
@@ -47,11 +48,11 @@ private:
 int main(void)
 {
 	Animal* animal = new Animal(COLOR_BLUE, 30);
-	animal->Roar(); // 동물 짖어
+	animal->Roar(); // Animal 짖다
 	delete animal; // animal 포인터 변수가 가리키는 동적할당한 메모리가 사라짐
 
 	animal = new Rabbit(COLOR_RED, 3, 20);
-	animal->Roar(); // 동물 짖어 (C++은 호출할 멤버함수가 정적(컴파일시간에)으로 결정됨 
+	animal->Roar(); // 깡총깡총
 	delete animal;
 	
 }
