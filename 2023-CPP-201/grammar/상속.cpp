@@ -46,8 +46,12 @@ private:
 
 int main(void)
 {
-	Rabbit* rabbit = new Rabbit(COLOR_RED, 3, 20); // 부모의 생성자 호출
-	rabbit->Roar(); // 부모의 멤버함수 호출
-	delete rabbit;
+	Animal* animal = new Animal(COLOR_BLUE, 30);
+	animal->Roar(); // 동물 짖어
+	delete animal; // animal 포인터 변수가 가리키는 동적할당한 메모리가 사라짐
+
+	animal = new Rabbit(COLOR_RED, 3, 20);
+	animal->Roar(); // 동물 짖어 (C++은 호출할 멤버함수가 정적(컴파일시간에)으로 결정됨 
+	delete animal;
 	
 }
