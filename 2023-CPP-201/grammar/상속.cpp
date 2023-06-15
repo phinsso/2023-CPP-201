@@ -25,7 +25,7 @@ private:
 };
 
 class Rabbit : public Animal {
-public:
+public: 
 	// 부모생성자 (Animal(color, age))가 먼저 호출됨
 	Rabbit(int color, int age, int ear_length) : Animal(color, age), ear_length_(ear_length)
 	{
