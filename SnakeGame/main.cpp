@@ -11,7 +11,21 @@
 
 using namespace sf;
 
+const int WIDTH = 1000;
+const int HEIGHT = 800;
+
+int block = 40; // 한 칸을 40으로
+const int w = WIDTH / block;
+const int h = HEIGHT / block;
+
 class Object {
+public:
+	int x_;
+	int y_;
+	RectangleShape sprite_;
+};
+
+class Apple {
 public:
 	int x_;
 	int y_;
@@ -23,6 +37,81 @@ public:
 	Snake(int dir, int length, float thickness, int block)
 		:dir_(dir), length_(length), thickness_(thickness) {
 		inner_ = block - thickness_;
+	}
+
+	void InitBody(void)
+	{
+
+		float snake_inner = this->GetInner();
+
+		for (int i = 0; i < BODY_MAX; i++) {
+			body_[i].x_ = -100;
+			body_[i].y_ = -100;
+			body_[i].sprite_.setPosition(body_[i].x_ * block, body_[i].y_ * block);
+			body_[i].sprite_.setSize(Vector2f(inner_, inner_));
+			body_[i].sprite_.setFillColor(Color::Green);
+
+			// 뱀의 테두리
+			body_[i].sprite_.setOutlineColor(Color::Color(0, 128, 0));
+			body_[i].sprite_.setOutlineThickness(5);
+		}
+		body_[0].x_ = 3;
+		body_[0].y_ = 3;
+	}
+
+	// 현재 사과를 먹고있는 상태인가?
+	bool isCollide(Apple* apple)
+	{
+		return body_[0].x_ == apple->x_ && body_[0].y_ == apple->y_;
+	}
+
+	// 몸통
+	void UpdateBody()
+	{
+		for (int i = length_ - 1; i > 0; i--) {
+			body_[i].x_ = body_[i - 1].x_;
+			body_[i].y_ = body_[i - 1].y_;
+		}
+	}
+
+	// 머리
+	void UpdateHead()
+	{
+		if (dir_ == DIR_UP) {
+			body_[0].y_--;
+		}
+		else if (dir_ == DIR_DOWN) {
+			body_[0].y_++;
+		}
+		else if (dir_ == DIR_LEFT) {
+			body_[0].x_--;
+		}
+		else if (dir_ == DIR_RIGHT) {
+			body_[0].x_++;
+		}
+	}
+
+	void UpdateBoundary()
+	{
+		if (body_[0].x_ < 0)
+			body_[0].x_ = 0;
+		if (body_[0].x_ >= w)
+			body_[0].x_ = w - 1;
+		if (body_[0].y_ < 0)
+			body_[0].y_ = 0;
+		if (body_[0].y_ >= h)
+			body_[0].y_ = h - 1;
+
+		for (int i = 0; i < length_; i++) {
+			body_[i].sprite_.setPosition(body_[i].x_ * block, body_[i].y_ * block);
+		}
+	}
+
+	void Render(RenderWindow* window)
+	{
+		for (int i = 0; i < BODY_MAX; i++) {
+			window->draw(body_[i].sprite_);
+		}
 	}
 
 	int GetDir(void) { return dir_; }
@@ -38,32 +127,17 @@ public:
 	// 길이 1 증가
 	void IncLength(void) { length_++; }
 
-	// TODO: 나중에 private으로 바꾸기
-	Object body_[BODY_MAX];
-
 private:
 	int dir_;
 	int length_;
 	float thickness_; // 외피 두께
 	float inner_; // 내부 두께
+	Object body_[BODY_MAX];
 	
 };
 
-class Apple {
-public:
-	int x_;
-	int y_;
-	RectangleShape sprite_;
-};
 
 int main(void) {
-
-	const int WIDTH = 1000;
-	const int HEIGHT = 800;
-
-	int block = 40; // 한 칸을 40으로
-	const int w = WIDTH / block;
-	const int h = HEIGHT / block;
 
 	RenderWindow window(VideoMode(WIDTH, HEIGHT), "Snake Game");
 	window.setFramerateLimit(10); // snake 움직이는 속도 조절 (1초에 n번의 작업이 이루어지도록 프레임을 조절) -> 사양에 관계없이 똑같은 속도로 처리됨 
@@ -72,21 +146,10 @@ int main(void) {
 
 	Snake snake = Snake(DIR_DOWN, 1, 5.f, block);
 
-	float snake_inner = snake.GetInner();
-	// TODO: 뱀과 사과가 걸치지 않도록 수정하기
-	for (int i = 0; i < BODY_MAX; i++) {
-		snake.body_[i].x_ = -100;
-		snake.body_[i].y_ = -100;
-		snake.body_[i].sprite_.setPosition(snake.body_[i].x_ * block, snake.body_[i].y_ * block);
-		snake.body_[i].sprite_.setSize(Vector2f(snake_inner, snake_inner));
-		snake.body_[i].sprite_.setFillColor(Color::Green);
+	snake.InitBody();
 
-		// 뱀의 테두리
-		snake.body_[i].sprite_.setOutlineColor(Color::Color(0, 128, 0));
-		snake.body_[i].sprite_.setOutlineThickness(5);
-	}
-	snake.body_[0].x_ = 3;
-	snake.body_[0].y_ = 3;
+	// TODO: 뱀과 사과가 걸치지 않도록 수정하기
+	
 
 	Apple apple;
 	apple.x_ = rand() % w;
@@ -125,28 +188,9 @@ int main(void) {
 
 		// update
 
-		// 뱀의 몸통에 대한 이동
-		for (int i = snake.GetLength() - 1; i > 0; i--) {
-			snake.body_[i].x_ = snake.body_[i - 1].x_;
-			snake.body_[i].y_ = snake.body_[i - 1].y_;
-		}
-
-		// 뱀의 머리에 대한 이동
-		if (snake.GetDir() == DIR_UP) {
-			snake.body_[0].y_--;
-		}
-		else if (snake.GetDir() == DIR_DOWN) {
-			snake.body_[0].y_++;
-		}
-		else if (snake.GetDir() == DIR_LEFT) {
-			snake.body_[0].x_--;
-		}
-		else if (snake.GetDir() == DIR_RIGHT) {
-			snake.body_[0].x_++;
-		}
-
 		// 뱀이 사과를 먹었을 때 길이가 늘어남
-		if (snake.body_[0].x_ == apple.x_ && snake.body_[0].y_ == apple.y_)
+		// if (snake.body_[0].x_ == apple.x_ && snake.body_[0].y_ == apple.y_)
+		if (snake.isCollide(&apple))
 		{
 			apple.x_ = rand() % w;
 			apple.y_ = rand() % h;
@@ -155,29 +199,19 @@ int main(void) {
 				snake.IncLength();
 		}
 
+		snake.UpdateBody();
+		snake.UpdateHead();
+		snake.UpdateBoundary();
+
 
 		// 경계범위를 넘었을 때
-		if (snake.body_[0].x_ < 0)
-			snake.body_[0].x_ = 0;
-		if (snake.body_[0].x_ >= w)
-			snake.body_[0].x_ = w - 1;
-		if (snake.body_[0].y_ < 0)
-			snake.body_[0].y_ = 0;
-		if (snake.body_[0].y_ >= h)
-			snake.body_[0].y_ = h - 1;
-
-		for (int i = 0; i < snake.GetLength(); i++) {
-			snake.body_[i].sprite_.setPosition(snake.body_[i].x_ * block, snake.body_[i].y_ * block);
-		}
-
-
+	
 		// render
 
 		window.clear();
 
-		for (int i = 0; i < BODY_MAX; i++) {
-			window.draw(snake.body_[i].sprite_);
-		}
+		snake.Render(&window);
+
 		window.draw(apple.sprite_); // 뱀과 사과가 겹칠 경우 사과가 위에 나옴 (먼저 draw 해서)
 
 		window.display();
