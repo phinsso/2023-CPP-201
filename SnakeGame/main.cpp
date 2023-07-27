@@ -18,6 +18,8 @@ int block = 40; // 한 칸을 40으로
 const int w = WIDTH / block;
 const int h = HEIGHT / block;
 
+bool is_gameover = false;
+
 class Object {
 public:
 	int x_;
@@ -93,17 +95,28 @@ public:
 		}
 	}
 
-	void UpdateBoundary()
+	void UpdateBoundary(void)
 	{
-		if (body_[0].x_ < 0)
+		// 바운더리를 넘었을 때 게임오버 발생
+		if (body_[0].x_ < 0) {
 			body_[0].x_ = 0;
-		if (body_[0].x_ >= w)
+			is_gameover = true;
+		}
+		else if (body_[0].x_ >= w) {
 			body_[0].x_ = w - 1;
-		if (body_[0].y_ < 0)
+			is_gameover = true;
+		}
+		else if (body_[0].y_ < 0) {
 			body_[0].y_ = 0;
-		if (body_[0].y_ >= h)
+			is_gameover = true;
+		}
+		else if (body_[0].y_ >= h) {
 			body_[0].y_ = h - 1;
+			is_gameover = true;
+		}
+	}
 
+	void UpdatePosition(void) {
 		for (int i = 0; i < length_; i++) {
 			body_[i].sprite_.setPosition(body_[i].x_ * block, body_[i].y_ * block);
 		}
@@ -160,12 +173,20 @@ int main(void) {
 	}
 
 
-	Text info;
-	info.setFont(font);
-	info.setCharacterSize(60);
-	info.setFillColor(Color::Magenta);
+	Text text_info;
+	text_info.setFont(font);
+	text_info.setCharacterSize(60);
+	text_info.setFillColor(Color::Magenta);
+	text_info.setPosition(0, 0);
 
-	char info_text[100];
+	char text_buf_info[100];
+
+	Text text_gameover;
+	text_gameover.setFont(font);
+	text_gameover.setCharacterSize(333);
+	text_gameover.setFillColor(Color::Red);
+	text_gameover.setPosition(0, 0);
+	text_gameover.setString("GAME\nOVER");
 
 	Snake snake = Snake(DIR_DOWN, 1, 5.f, block);
 
@@ -193,8 +214,8 @@ int main(void) {
 		elapsedTime = clock.getElapsedTime();
 		int seconds = elapsedTime.asSeconds();
 
-		sprintf(info_text, "score: %d   time: %d \n", snake.GetScore(), seconds);
-		info.setString(info_text);
+		sprintf(text_buf_info, "score: %d   time: %d \n", snake.GetScore(), seconds);
+		text_info.setString(text_buf_info);
 
 		if (Keyboard::isKeyPressed(Keyboard::Up))
 		{
@@ -230,6 +251,7 @@ int main(void) {
 		snake.UpdateBody();
 		snake.UpdateHead();
 		snake.UpdateBoundary();
+		snake.UpdatePosition();
 
 
 		window.clear();
@@ -237,7 +259,10 @@ int main(void) {
 		snake.Render(&window);
 
 		window.draw(apple.sprite_); // 뱀과 사과가 겹칠 경우 사과가 위에 나옴 (먼저 draw 해서)
-		window.draw(info);
+		window.draw(text_info);
+
+		if (is_gameover) // 게임오버일 경우
+			window.draw(text_gameover);
 
 		window.display();
 
