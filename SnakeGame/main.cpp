@@ -114,6 +114,10 @@ public:
 			body_[0].y_ = h - 1;
 			is_gameover = true;
 		}
+		// 바운더리를 넘지 않은 경우
+		else {
+			return;
+		}
 	}
 
 	void UpdatePosition(void) {
@@ -184,7 +188,7 @@ int main(void) {
 	Text text_gameover;
 	text_gameover.setFont(font);
 	text_gameover.setCharacterSize(333);
-	text_gameover.setFillColor(Color::Red);
+	text_gameover.setFillColor(Color::Yellow);
 	text_gameover.setPosition(0, 0);
 	text_gameover.setString("GAME\nOVER");
 
