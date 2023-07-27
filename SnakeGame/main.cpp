@@ -150,11 +150,16 @@ int main(void) {
 
 	srand(time(NULL));
 
+	sf::Clock clock; // SFML Clock 객체 생성
+	sf::Time elapsedTime; // 경과 시간을 저장할 객체
+
 	Font font;
 	if (!font.loadFromFile("C:\\windows\\Fonts\\arial.ttf")) {
 		printf("폰트 불러오기 실패\n");
 		return -1;
 	}
+
+
 	Text info;
 	info.setFont(font);
 	info.setCharacterSize(60);
@@ -165,9 +170,6 @@ int main(void) {
 	Snake snake = Snake(DIR_DOWN, 1, 5.f, block);
 
 	snake.InitBody();
-
-	// TODO: 뱀과 사과가 걸치지 않도록 수정하기
-	
 
 	Apple apple;
 	apple.x_ = rand() % w;
@@ -187,7 +189,11 @@ int main(void) {
 				window.close();
 		}
 
-		sprintf(info_text, "score : %d\n", snake.GetScore());
+		// 경과 시간 계산
+		elapsedTime = clock.getElapsedTime();
+		int seconds = elapsedTime.asSeconds();
+
+		sprintf(info_text, "score: %d   time: %d \n", snake.GetScore(), seconds);
 		info.setString(info_text);
 
 		if (Keyboard::isKeyPressed(Keyboard::Up))
