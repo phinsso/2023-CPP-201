@@ -150,6 +150,18 @@ int main(void) {
 
 	srand(time(NULL));
 
+	Font font;
+	if (!font.loadFromFile("C:\\windows\\Fonts\\arial.ttf")) {
+		printf("폰트 불러오기 실패\n");
+		return -1;
+	}
+	Text info;
+	info.setFont(font);
+	info.setCharacterSize(60);
+	info.setFillColor(Color::Magenta);
+
+	char info_text[100];
+
 	Snake snake = Snake(DIR_DOWN, 1, 5.f, block);
 
 	snake.InitBody();
@@ -175,7 +187,8 @@ int main(void) {
 				window.close();
 		}
 
-		printf("score: %d \n", snake.GetScore());
+		sprintf(info_text, "score : %d\n", snake.GetScore());
+		info.setString(info_text);
 
 		if (Keyboard::isKeyPressed(Keyboard::Up))
 		{
@@ -213,15 +226,12 @@ int main(void) {
 		snake.UpdateBoundary();
 
 
-		// 경계범위를 넘었을 때
-	
-		// render
-
 		window.clear();
 
 		snake.Render(&window);
 
 		window.draw(apple.sprite_); // 뱀과 사과가 겹칠 경우 사과가 위에 나옴 (먼저 draw 해서)
+		window.draw(info);
 
 		window.display();
 
