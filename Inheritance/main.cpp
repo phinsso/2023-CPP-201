@@ -149,5 +149,11 @@ int main(void)
 
 		window.display();
 	}
+
+	delete player;
+	delete enemy1;
+	delete enemy2;
+	delete enemy3;
+
 	return 0;
 }
