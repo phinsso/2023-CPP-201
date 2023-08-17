@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="grammar\템플릿 클래스.cpp" />
     <ClCompile Include="grammar\템플릿.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
