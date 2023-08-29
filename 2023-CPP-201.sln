@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31105.61
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2023-CPP-201", "2023-CPP-201\2023-CPP-201.vcxproj", "{7C3BB3B1-A738-4E58-A098-E1BE21142102}"
 EndProject
@@ -13,6 +13,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SnakeGame", "SnakeGame\SnakeGame.vcxproj", "{B7C4E66C-1A7D-4515-991D-31CDB0748B74}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Inheritance", "Inheritance\Inheritance.vcxproj", "{1F824A12-BC5A-4D89-B60C-367CEBC8ED4E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileSplit", "FileSplit\FileSplit.vcxproj", "{12804F0D-E48C-4240-8054-C53DA0BAFD11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,6 +48,14 @@ Global
 		{1F824A12-BC5A-4D89-B60C-367CEBC8ED4E}.Release|x64.Build.0 = Release|x64
 		{1F824A12-BC5A-4D89-B60C-367CEBC8ED4E}.Release|x86.ActiveCfg = Release|Win32
 		{1F824A12-BC5A-4D89-B60C-367CEBC8ED4E}.Release|x86.Build.0 = Release|Win32
+		{12804F0D-E48C-4240-8054-C53DA0BAFD11}.Debug|x64.ActiveCfg = Debug|x64
+		{12804F0D-E48C-4240-8054-C53DA0BAFD11}.Debug|x64.Build.0 = Debug|x64
+		{12804F0D-E48C-4240-8054-C53DA0BAFD11}.Debug|x86.ActiveCfg = Debug|Win32
+		{12804F0D-E48C-4240-8054-C53DA0BAFD11}.Debug|x86.Build.0 = Debug|Win32
+		{12804F0D-E48C-4240-8054-C53DA0BAFD11}.Release|x64.ActiveCfg = Release|x64
+		{12804F0D-E48C-4240-8054-C53DA0BAFD11}.Release|x64.Build.0 = Release|x64
+		{12804F0D-E48C-4240-8054-C53DA0BAFD11}.Release|x86.ActiveCfg = Release|Win32
+		{12804F0D-E48C-4240-8054-C53DA0BAFD11}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
