@@ -1,5 +1,4 @@
-﻿#include <iostream>
-#include "whale.h"
+﻿#include "all.h"
 
 void Whale::sing(void) {
 	cout << "우 우우 우 우" << endl;

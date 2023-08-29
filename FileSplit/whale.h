@@ -1,6 +1,5 @@
 ﻿#pragma once
-#include "animal.h"
-#include <iostream>
+#include "all.h"
 
 using namespace std;
 

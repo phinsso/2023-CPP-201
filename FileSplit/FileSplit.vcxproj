@@ -133,6 +133,7 @@
     <ClCompile Include="whale.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="all.h" />
     <ClInclude Include="animal.h" />
     <ClInclude Include="shark.h" />
     <ClInclude Include="whale.h" />

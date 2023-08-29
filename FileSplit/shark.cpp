@@ -1,6 +1,4 @@
-﻿#include <iostream>
-#include "shark.h"
-
+﻿#include "all.h"
 using namespace std;
 
 void Shark::sing(void) {

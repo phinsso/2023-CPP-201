@@ -1,3 +1,3 @@
-#include "animal.h"
+#include "all.h"
 
 void Animal::sing(void) {}
