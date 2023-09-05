@@ -1,36 +1,26 @@
 ﻿#include <iostream>
+#include <vector>
 
 using namespace std;
 
+// vector
+// 동적배열 (가변배열, size 변화 가능)
+// 연속된 메모리 공간에 위치 (전통적인 배열도 가지고 있는 특징)
+// 임의접근 가능 (전통적인 배열도 가지고 있는 특징)
+
 int main(void) {
-	int* arr = new int[4];
-	arr[0] = 10, arr[1] = 20, arr[2] = 30, arr[3] = 40;
+	// 벡터는 크기가 자유롭게 변할 수 있는 동적배열이다.
+	vector<int> arr;
+	arr.reserve(4); // 벡터의 크기를 4로 한다
+	arr.push_back(10);
+	arr.push_back(20);
+	arr.push_back(30);
+	arr.push_back(40);
 
 	// 4개가 꽉 찬 공간에 데이터 하나를 더 넣어보자
-	
-		// 크기가 더 큰 새 공간을 하나 만든다
-	int* temp = new int[8];
-
-		// 새 공간에 값을 복사한다
-	for (int i = 0; i < 4; i++) {
-		temp[i] = arr[i];
-	}
-
-		// 기존 할당된 공간을 지운다
-	delete[] arr;
-
-		// 새 공간으로 갈아탄다
-	arr = temp;
-
-		// 새로운 데이터를 집어넣는다
-	arr[4] = 50;
+	arr.push_back(50);
 	
 	for (int i = 0; i < 5; i++) {
 		cout << arr[i] << " ";
 	}
-
-	// 메모리 누수를 막기 위해 동적할당된 메모리는 모두 지워주자
-	// arr과 temp 둘 다 같은 곳을 가리키기 때문에 아무거나 지워도 상관없음
-	delete[] arr;
-
 }
