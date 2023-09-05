@@ -9,6 +9,7 @@ using namespace std;
 // 임의접근 가능 (전통적인 배열도 가지고 있는 특징)
 
 int main(void) {
+	// 전통적인 배열은 크기가 고정되어 있으나,
 	// 벡터는 크기가 자유롭게 변할 수 있는 동적배열이다.
 	vector<int> arr;
 	arr.reserve(4); // 벡터의 크기를 4로 한다
