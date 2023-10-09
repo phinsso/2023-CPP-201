@@ -20,8 +20,13 @@ int main(void) {
 
 	// 4개가 꽉 찬 공간에 데이터 하나를 더 넣어보자
 	arr.push_back(50);
+
+	// 원소의 주소를 나타내는 반복자 iterator
+	vector<int>::iterator iter;
 	
-	for (int i = 0; i < arr.size(); i++) {
-		cout << arr[i] << " ";
+	// begin(): 첫 원소를 가리키는 함수
+	// end(): 마지막 원소 다음을 가리키는 함수
+	for (iter = arr.begin(); iter != arr.end(); iter++) {
+		cout << *iter << " "; // iterator는 포인터이기 때문에 값에 접근하려면 앞에 * 붙여야 함
 	}
 }
