@@ -19,7 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="새파일.cpp" />
+    <ClCompile Include="grammar\맵.cpp" />
+    <ClCompile Include="grammar\벡터.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

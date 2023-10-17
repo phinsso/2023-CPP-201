@@ -15,7 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="새파일.cpp">
+    <ClCompile Include="grammar\맵.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="grammar\벡터.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
