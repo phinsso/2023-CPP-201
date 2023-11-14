@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="grammar\static.cpp" />
     <ClCompile Include="grammar\맵.cpp" />
     <ClCompile Include="grammar\범위기반 for문.cpp" />
   </ItemGroup>
